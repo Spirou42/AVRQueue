@@ -9,7 +9,7 @@ void setup() {
     myQueue.scheduleFunction(testFunction, "Test", 5000, 1000);
 
     while(1) {
-        myQueue.run(millis());
+        myQueue.Run(millis());
         delay(10);
     }
 }
@@ -20,3 +20,5 @@ int testFunction(unsigned long now)
     Serial.println(now);
 }
 
+void loop() {
+}
