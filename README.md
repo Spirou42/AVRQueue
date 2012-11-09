@@ -26,32 +26,32 @@ All settings are in **queue.h**:
 > int queued\_function(queue\_time\_t now)<br />
 > The _now_ variable will contain the time the function was called.
 
-* int scheduleFunction(queuedFunction **pFunction**, const char ***pId**, queue\_time\_t **pInitialRun**, queue\_time\_t **pRecur**)
+* int scheduleFunction(queuedFunction **pFunction**, const char **pId**, queue\_time\_t **pInitialRun**, queue\_time\_t **pRecur**)
 > Add a function to the queue.<br/>
 > ***Return Values:***<br/>
 >> **0** if successful.<br/>
 >> **-1** if unsuccessful (queue is full).<br/>
 
  * **pFunction**: Function to put in the queue.
- * ***pId**: Up to 8 character unique identifier. (Unless you change the length).
+ * **pId**: Up to 8 character unique identifier. (Unless you change the length).
  * **pInitialRun**: Initial run time, in whatever time units you feed into **run**.
  * **pRecur**: Recurrence period, in whatever time units you feed into **run**.
 
-* int scheduleRemoveFunction(const char ***pId**)
+* int scheduleRemoveFunction(const char **pId**)
 > Remove a function with given unique ID from the queue.<br />
 > ***Return Values:***<br/>
 >> **0** if successful. <br/>
 >> **-1** if unsuccessful.
 
- * ***pId**: Unique id 
+ * **pId**: Unique id 
 
-* int scheduleChangeFunction(const char ***pId**, queue_time_t **pNewNext**, queue_time_t **pNewRecur**)
+* int scheduleChangeFunction(const char **pId**, queue_time_t **pNewNext**, queue_time_t **pNewRecur**)
 > Change function in the queue.<br/>
 > ***Return Values:***<br/>
 >> **0** if successful. <br/>
 >> **-1** if unsuccessful.
 
- * ***pId**: Unique identifier.
+ * **pId**: Unique identifier.
  * **pNewNext**: Next time to run the function.
  * **pNewRecur**: New recurrence time.
 
@@ -80,32 +80,32 @@ The Arduino library is much easier to use.  Extract to <Arduino Root>/Libraries/
 
 * ***Creating a Queue***: Create a queue like this: ```Queue myQueue;```
 
-* int Queue::scheduleFunction(queuedFunction **pFunction**, const char ***pId**, unsigned long **pInitialRun**, unsigned long **pRecur**)
+* int Queue::scheduleFunction(queuedFunction **pFunction**, const char **pId**, unsigned long **pInitialRun**, unsigned long **pRecur**)
 > Add a function to the queue.<br/>
 > ***Return Values:***<br/>
 >> **0** if successful.<br/>
 >> **-1** if unsuccessful (queue is full).<br/>
 
  * **pFunction**: Function to put in the queue.
- * ***pId**: Up to 8 character unique identifier. (Unless you change the length).
+ * **pId**: Up to 8 character unique identifier. (Unless you change the length).
  * **pInitialRun**: Initial run time, in milliseconds.
  * **pRecur**: Recurrence period, in milliseconds.
 
-* int Queue::scheduleRemoveFunction(const char ***pId**)
+* int Queue::scheduleRemoveFunction(const char **pId**)
 > Remove a function with given unique ID from the queue.<br />
 > ***Return Values:***<br/>
 >> **0** if successful. <br/>
 >> **-1** if unsuccessful.
 
- * ***pId**: Unique id 
+ * **pId**: Unique id 
 
-* int Queue::scheduleChangeFunction(const char ***pId**, unsigned long **pNewNext**, unsigned long **pNewRecur**)
+* int Queue::scheduleChangeFunction(const char **pId**, unsigned long **pNewNext**, unsigned long **pNewRecur**)
 > Change function in the queue.<br/>
 > ***Return Values:***<br/>
 >> **0** if successful. <br/>
 >> **-1** if unsuccessful.
 
- * ***pId**: Unique identifier.
+ * **pId**: Unique identifier.
  * **pNewNext**: Next time to run the function.
  * **pNewRecur**: New recurrence time.
 
