@@ -75,18 +75,22 @@ The Arduino library is much easier to use.  Extract to <Arduino Root>/Libraries/
 ### Usage
 
 * ***Queued Functions***: All queued functions must have a C signature (either not class-members, or static class-members) of:
-> int queued\_function(unsigned long now)<br />
-> The _now_ variable will contain the time the function was called.
+	
+		int queued_function(unsigned long now, void* userData)
+
+	* The _now_ variable will contain the time the function was called.
+	* The _userData_ variable is a pointer so the function can have its own 
 
 * ***Creating a Queue***: Create a queue like this: ```Queue myQueue;```
 
-* int Queue::scheduleFunction(queuedFunction **pFunction**, const char **pId**, unsigned long **pInitialRun**, unsigned long **pRecur**)
+* int Queue::scheduleFunction(queuedFunction **pFunction**,void* **userData**, const char **pId**, unsigned long **pInitialRun**, unsigned long **pRecur**)
 > Add a function to the queue.<br/>
 > ***Return Values:***<br/>
 >> **0** if successful.<br/>
 >> **-1** if unsuccessful (queue is full).<br/>
 
  * **pFunction**: Function to put in the queue.
+ * **userData**: pointer to a userData structure.
  * **pId**: Up to 8 character unique identifier. (Unless you change the length).
  * **pInitialRun**: Initial run time, in milliseconds.
  * **pRecur**: Recurrence period, in milliseconds.
