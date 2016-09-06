@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-typedef int (*queuedFunction)(unsigned long);
+typedef int (*queuedFunction)(unsigned long, void* userData);
 
 #define QueueScheduleSize 11
 
@@ -12,6 +12,7 @@ struct queueItem {
 	unsigned long next;
 	unsigned long recur;
 	char itemName[8];
+	void* userData;
 };
 
 class Queue
@@ -28,7 +29,7 @@ private:
 public:
 	Queue();
 
-	int scheduleFunction(queuedFunction func, const char * id, unsigned long initialRun, unsigned long recur);
+	int scheduleFunction(queuedFunction func, void *userData, const char * id, unsigned long initialRun, unsigned long recur);
 	int scheduleRemoveFunction(const char * id);
 	int scheduleChangeFunction(const char * id, unsigned long nextRunTime, unsigned long newRecur);
 

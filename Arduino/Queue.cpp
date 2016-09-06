@@ -7,7 +7,7 @@ Queue::Queue()
     _queueEnd = 0;
 }
 
-int Queue::scheduleFunction(queuedFunction func, const char * id, unsigned long initialRun, unsigned long recur)
+int Queue::scheduleFunction(queuedFunction func, void* userData, const char * id, unsigned long initialRun, unsigned long recur)
 {
 	int rv = 0;
 
@@ -22,7 +22,7 @@ int Queue::scheduleFunction(queuedFunction func, const char * id, unsigned long 
     	memcpy(newItem.itemName, id, strlen(id));
     	newItem.recur = recur;
     	newItem.next = initialRun;
-
+      newItem.userData = userData;
     	rv = _addToQueue(newItem);
     }
 
@@ -33,7 +33,7 @@ int Queue::scheduleRemoveFunction(const char * id)
 {
 	queueItem target;
     int rv = -1;
-    for (int i = 0; i < _itemsInQueue; ++i)
+    for (unsigned int i = 0; i < _itemsInQueue; ++i)
     {
         if(_queueGetTop(target) == 0)
         {
@@ -56,7 +56,7 @@ int Queue::scheduleChangeFunction(const char * id, unsigned long nextRunTime, un
 {
 	queueItem target;
     int rv = -1;
-    for (int i = 0; i < _itemsInQueue; ++i)
+    for (unsigned int i = 0; i < _itemsInQueue; ++i)
     {
         if(_queueGetTop(target) == 0)
         {
@@ -84,14 +84,14 @@ int Queue::Run(unsigned long now)
     {
         rv = -1;
     }
-    for (int i = 0; i < _itemsInQueue; ++i)
+    for (unsigned int i = 0; i < _itemsInQueue; ++i)
     {
         if(_queueGetTop(target)==0)
         {
             if(target.next <= now)
             {
                 int tRv;
-                tRv = (target.fPtr)(now);
+                tRv = (target.fPtr)(now, target.userData);
                 if(tRv == 0)
                 {
                     rv++;
@@ -128,7 +128,7 @@ int Queue::_queueGetTop(queueItem &item)
         rv = -1;
     }
 
-    return rv;  
+    return rv;
 }
 
 int Queue::_addToQueue(queueItem item)
