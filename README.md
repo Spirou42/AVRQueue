@@ -1,7 +1,14 @@
-AVRQueue
-========
+#AVRQueue
 
-AVRQueue is a task queuing library for AVR and Arduino processors.  Included here are two different branches, **AVR** and **Arduino**.
+AVRQueue is a task queuing library for AVR and Arduino processors.  
+
+##This fork is incompatible with the original one. 
+##The prototype for the scheduled functions for the **Arduino** branch has an additional  _userData_ (void*) 
+## The AVR branch has not changed
+## If you don't need the _userData_ pointer, please use the original version.
+</h2>
+
+Included here are two different branches, **AVR** and **Arduino**.
 
 This is a simple queuing library.  Add functions to the queue, along with a unique identifier, an initial run time, and a recurrence time.  If your time scale is in seconds, an item with an initial run time of 1, and a recurrence of 5 will run after time 1 second, and every 5 seconds thereafter.
 
